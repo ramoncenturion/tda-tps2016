@@ -23,12 +23,10 @@ public class LectorArchivo {
     private int cantidadVertices = 0;
     private int cantidadAristas = 0;
     private List<String> pesos = null;
-	private boolean tipoEntradaGrafo;
 	private List<String> elementos = null;
     
 	LectorArchivo(String direccion, boolean tipoGrafo){
 		
-		tipoEntradaGrafo = tipoGrafo;
 		try {
 			archivo = new File(direccion);
 			fr = new FileReader(archivo);
@@ -40,19 +38,8 @@ public class LectorArchivo {
 			e.printStackTrace();
 		}
 	}
-	
-	public void procesarArchivo() throws IOException{
-		if (br != null){
-			if (tipoEntradaGrafo){
-				procesarArchivoGrafo();
-			} else {
-				procesarArchivoOrdenK();
-			}
-		} else {
-			System.out.println("No existe el archivo.");
-		}
-	}
-	private void procesarArchivoOrdenK() throws IOException {
+
+	public void procesarArchivoOrdenK() throws IOException {
 		String linea;
 		if((linea=br.readLine()) != null){
 			String[] elementosSplit = linea.split("-");
@@ -62,7 +49,7 @@ public class LectorArchivo {
 	    }	
 	}
 
-	private void procesarArchivoGrafo() throws NumberFormatException, IOException {
+	public void procesarArchivoGrafo() throws NumberFormatException, IOException {
 		String linea;
 		if ((linea=br.readLine()) != null){
 			cantidadVertices = Integer.valueOf(linea);
