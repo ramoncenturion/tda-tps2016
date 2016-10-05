@@ -2,7 +2,11 @@ package tp1;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.Scanner;
+//import java.util.Scanner;
+
+import algoritmosOrdenK.FuerzaBruta;
+import algoritmosOrdenK.KSelecciones;
+import algoritmosOrdenK.OrdenarSeleccionar;
 
 public class Main {
 
@@ -32,12 +36,20 @@ public class Main {
 		}
 	    
 	    System.out.println("Cantidad Vertices: "+lectorGrafo.getCantidadVertices()+" - "+ "Cantidad Aristas: "+lectorGrafo.getCantidadAristas());
-	    List<String> elementos = lectorOrdenK.getElementos();
+	    
+	    List<Integer> elementos = lectorOrdenK.getConjuntoElementos();
 	    System.out.println("Elementos:");
-	    for (String elemento : elementos) {
-			System.out.println(elemento);
+	    for (Integer elemento : elementos) {
+			System.out.print(elemento+" | ");
 		}
 	    
+	    FuerzaBruta algoFuerzaBruta = new FuerzaBruta(lectorOrdenK.getConjuntoElementos());
+	    
+	    
+	    
+	    
+	    OrdenarSeleccionar algoOrdenarSeleccionar = new OrdenarSeleccionar(lectorOrdenK.getConjuntoElementos());
+	    KSelecciones algoKSelecciones = new KSelecciones(lectorOrdenK.getConjuntoElementos());
 	}
 
 }

@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+
 /**
  * @author RCenturion
  *
@@ -23,8 +24,8 @@ public class LectorArchivo {
     private int cantidadVertices = 0;
     private int cantidadAristas = 0;
     private List<String> pesos = null;
-	private List<String> elementos = null;
-    
+	private List<Integer> conjuntoElementos = null;
+	
 	LectorArchivo(String direccion, boolean tipoGrafo){
 		
 		try {
@@ -32,7 +33,7 @@ public class LectorArchivo {
 			fr = new FileReader(archivo);
 			br = new BufferedReader(fr);
 			pesos = new ArrayList<String>();
-			elementos = new ArrayList<String>();
+			conjuntoElementos = new ArrayList<Integer>();
 		} catch (FileNotFoundException e) {
 			System.out.println("No se pudo abrir el archivo.");
 			e.printStackTrace();
@@ -44,9 +45,9 @@ public class LectorArchivo {
 		if((linea=br.readLine()) != null){
 			String[] elementosSplit = linea.split("-");
 	       	for (int i = 0; i < elementosSplit.length; i++) {
-	       		elementos.add(elementosSplit[i]);	
+	       		conjuntoElementos.add(Integer.valueOf(elementosSplit[i]));
 			}
-	    }	
+	    }
 	}
 
 	public void procesarArchivoGrafo() throws NumberFormatException, IOException {
@@ -88,11 +89,13 @@ public class LectorArchivo {
 		this.pesos = pesos;
 	}
 
-	public List<String> getElementos() {
-		return elementos;
+	public List<Integer> getConjuntoElementos() {
+		return conjuntoElementos;
 	}
 
-	public void setElementos(List<String> elementos) {
-		this.elementos = elementos;
+	public void setConjuntoElementos(List<Integer> conjuntoElementos) {
+		this.conjuntoElementos = conjuntoElementos;
 	}
+
+
 }
