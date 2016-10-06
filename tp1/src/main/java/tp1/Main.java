@@ -42,13 +42,15 @@ public class Main {
 	    for (Integer elemento : elementos) {
 			System.out.print(elemento+" | ");
 		}
-	    
+
+	    System.out.println("\n****************************");
+	    System.out.println("\nFuerza Bruta");
 	    FuerzaBruta algoFuerzaBruta = new FuerzaBruta(lectorOrdenK.getConjuntoElementos());
-	    
-	    
-	    
-	    
+
+	    System.out.println("\n****************************");
+	    System.out.println("Ordenar y seleccionar");
 	    OrdenarSeleccionar algoOrdenarSeleccionar = new OrdenarSeleccionar(lectorOrdenK.getConjuntoElementos());
+
 	    KSelecciones algoKSelecciones = new KSelecciones(lectorOrdenK.getConjuntoElementos());
 	}
 

@@ -23,7 +23,7 @@ public class FuerzaBruta {
 		Random rn = new Random();
 		
 		int candidato = rn.nextInt(this.conjuntoElementos.size());
-		System.out.println("\nCandidato:"+this.conjuntoElementos.get(candidato));
+		System.out.println("Candidato:"+this.conjuntoElementos.get(candidato));
 		
 		if (this.esMinElemento(candidato)){
 			System.out.println("Minimo: "+this.conjuntoElementos.get(candidato));
