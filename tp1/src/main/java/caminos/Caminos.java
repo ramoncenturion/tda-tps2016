@@ -1,4 +1,4 @@
-package main.java.caminos;
+package caminos;
 
 import java.util.List;
 
