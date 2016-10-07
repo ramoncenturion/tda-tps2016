@@ -3,24 +3,35 @@ package caminos;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class Digraph {
+public class Digraph {
 	
-	public Digraph(Graph g, int v) {
-		g = new Graph(v);
+	private final int v; // Cantidad de vertices
+	private int e;		// Cantdad de aristas
+	private List<List<Integer>> adj;
+	private List<Arista> aristas;
+	
+	public Digraph(int v) {
+		this.v = v;
+		this.e = 0;
+		this.adj = new ArrayList<List<Integer>>();
+		this.aristas = new ArrayList<Arista>();
+		
+		for (int i = 0; i < v; i++) {
+			adj.add(new ArrayList<Integer>());
+		}
 	}
 	
-	public int v(Graph g) {
-		return g.getV();
+	public int v() {
+		return v;
 	}
 	
-	public int e(Graph g) {
-		return g.getE();
+	public int e() {
+		return e;
 	}
 	
-	public List<Arista> adj_e(Graph g, int v) {
+	public List<Arista> adj_e(int v) {
 		
 		List<Arista> aristasAdy = new ArrayList<Arista>();
-		List<Arista> aristas = g.getAristas();
 		
 		for (Arista arista : aristas) {
 			if (arista.getSrc() == v) {
@@ -31,24 +42,24 @@ public abstract class Digraph {
 		return aristasAdy;
 	}
 	
-	public List<Integer> adj(Graph g, int v) {
-		return g.getAdj().get(v);
+	public List<Integer> adj(int v) {
+		return adj.get(v);
 	}
 	
-	public void add_edge(Graph g, int u, int v, double weight) {
+	public void add_edge(int u, int v, double weight) {
 		Arista arista = new Arista(u, v, weight);
-		g.addEdge(arista);
+		
+		this.adj.get(u).add(v);
+		this.aristas.add(arista);
+		this.e++;
 	}
 	
-	public void iter(Graph g) {
-//	  def __iter__(g):
-//	    """Itera de 0 a V."""
-//	    return iter(range(g.V()))
-		return;
+	public List<List<Integer>> iter() {
+		return adj;
 	}
 	
-	public List<Arista> iter_edges(Graph g) {
-		return g.getAristas();
+	public List<Arista> iter_edges() {
+		return aristas;
 	}
 	
 }
