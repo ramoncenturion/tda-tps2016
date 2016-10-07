@@ -5,9 +5,10 @@ import java.util.List;
 
 public class Graph {
 	
-	private final int v;
-	private int e;
+	private final int v; // Cantidad de vertices
+	private int e;		// Cantdad de aristas
 	private List<List<Integer>> adj;
+	private List<Arista> aristas;
 	
 	public Graph(int v) {
 		this.v = v;
@@ -26,6 +27,7 @@ public class Graph {
 		this.adj.get(v).add(w);
 		this.adj.get(w).add(v);
 		this.e++;
+		this.aristas.add(arista);
 	}
 
 	public int getV() {
@@ -39,6 +41,9 @@ public class Graph {
 	public List<List<Integer>> getAdj() {
 		return adj;
 	}
-	
+
+	public List<Arista> getAristas() {
+		return aristas;
+	}
 	
 }
