@@ -5,7 +5,7 @@ import java.util.Queue;
 
 public class BFS extends Caminos {
 	
-	private double dist[];  // Inicializar a +inf.
+	private double dist[];
 	private Arista edge[];
 	
 	public BFS(Digraph grafo, int origin, int destino) {
@@ -14,16 +14,16 @@ public class BFS extends Caminos {
 	    for (int i = 0; i < grafo.v(); i++) {
 	    	dist[i] = Double.POSITIVE_INFINITY;
 	    }
-	    Queue<Integer> q = new LinkedList<Integer>();
+	    Queue<Integer> vecinos = new LinkedList<Integer>();
 	    dist[origin] = 0;
 	    vecinos.add(origin);
 
         while (!vecinos.isEmpty()) {
             int v = vecinos.remove();
 
-            for (int w : g.adj(v)) {
+            for (int w : grafo.adj(v)) {
                 if (!visitado(w)) {
-                	//TODO: Esto esta bien?
+                	
                 	edge[w] = new Arista(v, w, 0);
                 	dist[w] = dist[v] + 1;
                 	vecinos.add(w);
