@@ -6,7 +6,6 @@ import java.util.Queue;
 public class BFS extends Caminos {
 	
 	private double dist[];
-	private Arista edge[];
 	
 	public BFS(Digraph grafo, int origin, int destino) {
 	    super(grafo, origin);
