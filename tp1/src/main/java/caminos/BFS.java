@@ -26,7 +26,7 @@ public class BFS extends Caminos {
             for (int w : grafo.adj(v)) {
                 if (!visitado(w)) {
                 	
-                	edge[v] = new Arista(v, w, 0);
+                	edge[w] = new Arista(v, w, 0);
                 	dist[w] = dist[v] + 1;
                 	vecinos.add(w);
                 }
