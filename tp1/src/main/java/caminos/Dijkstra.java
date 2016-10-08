@@ -54,4 +54,14 @@ public class Dijkstra extends Caminos {
 		return camino;
 	}
 
+	@Override
+	public double distancia(int v) {
+		return dist[v];
+	}
+
+	@Override
+	protected Arista edge_to(int v) {
+		return edge[v]; 
+	}
+
 }
