@@ -16,4 +16,11 @@ public abstract class EstadisticoK {
 		return processTime;
 	}
 
+
+	protected void swap(int a, int b) {
+		int tmp = this.conjuntoElementos.get(a);
+		this.conjuntoElementos.set(a,this.conjuntoElementos.get(b));
+		this.conjuntoElementos.set(b,tmp);
+	}
+	
 }

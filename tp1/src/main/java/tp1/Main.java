@@ -9,6 +9,7 @@ import algoritmosOrdenK.FuerzaBruta;
 import algoritmosOrdenK.KHeapsort;
 import algoritmosOrdenK.KSelecciones;
 import algoritmosOrdenK.OrdenarSeleccionar;
+import algoritmosOrdenK.QuickSelect;
 
 public class Main {
 
@@ -123,6 +124,20 @@ public class Main {
 	    System.out.println("Maximo: "+khMax.getElementK());
 	    System.out.println("Time: "+ khMax.getProcessTime());
 
+    	System.out.println("\n****************************");
+	    System.out.println("QuickSelect");
+	    
+    	QuickSelect quickSelMin = new QuickSelect(lectorOrdenK.getConjuntoElementos(), minimo);
+	    System.out.println("Minimo: "+quickSelMin.getElementK());
+	    System.out.println("Time: "+ quickSelMin.getProcessTime());
+
+    	QuickSelect quickSelMed = new QuickSelect(lectorOrdenK.getConjuntoElementos(), mediana);
+	    System.out.println("Minimo: "+quickSelMed.getElementK());
+	    System.out.println("Time: "+ quickSelMed.getProcessTime());
+
+    	QuickSelect quickSelMax = new QuickSelect(lectorOrdenK.getConjuntoElementos(), maximo);
+	    System.out.println("Minimo: "+quickSelMax.getElementK());
+	    System.out.println("Time: "+ quickSelMax.getProcessTime());
 	}
 
 }
