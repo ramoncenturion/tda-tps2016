@@ -15,54 +15,30 @@ import java.util.Random;
  */
 public class OrdenarSeleccionar {
 
-	private List<Integer> conjuntoElementosParaMin;
-	private List<Integer> conjuntoElementosParaMax;
-	private List<Integer> conjuntoElementosParaMed;
-	private int posibleEstadistico;
-
 	public OrdenarSeleccionar(List<Integer> conjuntoElementos) {
-		this.conjuntoElementosParaMin = new ArrayList<Integer>(conjuntoElementos);
-		this.conjuntoElementosParaMax = new ArrayList<Integer>(conjuntoElementos);
-		this.conjuntoElementosParaMed = new ArrayList<Integer>(conjuntoElementos);
+		List<Integer> conjuntoElementosParaMin = new ArrayList<Integer>(conjuntoElementos);
+		List<Integer> conjuntoElementosParaMax = new ArrayList<Integer>(conjuntoElementos);
+		List<Integer> conjuntoElementosParaMed = new ArrayList<Integer>(conjuntoElementos);
 		
+		int minimo = 0;
+		int maximo = conjuntoElementos.size()-1;
+		int mediana = conjuntoElementos.size()/2;
 		
-		Random rn = new Random();
+		int minimoK = obtenerElementoOrdenK(minimo, conjuntoElementosParaMin);
+		int medianaK = obtenerElementoOrdenK(mediana, conjuntoElementosParaMed);
+		int maximoK = obtenerElementoOrdenK(maximo, conjuntoElementosParaMax);
 		
-		int candidato = rn.nextInt(conjuntoElementos.size());
-		posibleEstadistico = conjuntoElementos.get(candidato);
-		System.out.println("Candidato:"+posibleEstadistico);
-		
-		if (this.esMinElemento(candidato)){
-			System.out.println("Minimo: "+conjuntoElementos.get(candidato));
-		}
-		if (this.esMaxElemento(candidato)){
-			System.out.println("Maximo: "+conjuntoElementos.get(candidato));
-		}
-		if (this.esMediaElemento(candidato)){
-			System.out.println("Mediana: "+conjuntoElementos.get(candidato));
-		}
-		
-	}
-
-	private boolean esMediaElemento(int candidato) {
-		this.ordenar(this.conjuntoElementosParaMed);
-		return false;
-	}
-
-	private boolean esMaxElemento(int candidato) {
-		this.ordenar(this.conjuntoElementosParaMax);
-//		System.out.println("ordenados:");
-//		for (Integer elemento : this.conjuntoElementosParaMax) {
-//			System.out.print(elemento+" | ");
-//		}
-		return this.conjuntoElementosParaMax.get(this.conjuntoElementosParaMax.size()-1).equals(this.posibleEstadistico);
+		System.out.println("Candidato:"+minimoK);
+		System.out.println("Candidato:"+medianaK);
+		System.out.println("Candidato:"+maximoK);
 	}
 
 
-	private boolean esMinElemento(int candidato) {
-		this.ordenar(this.conjuntoElementosParaMin);
-		return this.conjuntoElementosParaMin.get(0).equals(this.posibleEstadistico);
+	private int obtenerElementoOrdenK(int ordenK, List<Integer> conjuntoElementos) {
+		this.ordenar(conjuntoElementos);
+		return conjuntoElementos.get(ordenK);
 	}
+
 
 	private void ordenar(List<Integer> conjuntoElementos) {
 		Comparator<Integer> c = new Comparator<Integer>() {
