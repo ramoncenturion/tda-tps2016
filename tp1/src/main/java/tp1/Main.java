@@ -1,10 +1,12 @@
 package tp1;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 //import java.util.Scanner;
 
 import algoritmosOrdenK.FuerzaBruta;
+import algoritmosOrdenK.KHeapsort;
 import algoritmosOrdenK.KSelecciones;
 import algoritmosOrdenK.OrdenarSeleccionar;
 
@@ -92,6 +94,35 @@ public class Main {
 	    System.out.println("Maximo: "+algoKSelMax.getElementK());
 	    System.out.println("Time: "+ algoKSelMax.getProcessTime());
 	    
+		List<Integer> A = new ArrayList<Integer>();
+    	A.add(4);
+    	A.add(1);
+    	A.add(3);
+    	A.add(2);
+    	A.add(16);
+    	A.add(9);
+    	A.add(10);
+    	A.add(14);
+    	A.add(8);
+    	A.add(7);
+    	
+    	int k = 11;
+    	
+    	System.out.println("\n****************************");
+	    System.out.println("K HeapSort");
+	    
+    	KHeapsort khMin = new KHeapsort(lectorOrdenK.getConjuntoElementos(), minimo);
+	    System.out.println("Minimo: "+khMin.getElementK());
+	    System.out.println("Time: "+ khMin.getProcessTime());
+
+	    KHeapsort khMed = new KHeapsort(lectorOrdenK.getConjuntoElementos(), mediana);
+	    System.out.println("Mediana: "+khMed.getElementK());
+	    System.out.println("Time: "+ khMed.getProcessTime());
+
+	    KHeapsort khMax = new KHeapsort(lectorOrdenK.getConjuntoElementos(), maximo);
+	    System.out.println("Maximo: "+khMax.getElementK());
+	    System.out.println("Time: "+ khMax.getProcessTime());
+
 	}
 
 }

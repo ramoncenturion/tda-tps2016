@@ -5,13 +5,10 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
-public class KHeapsort {
+public class KHeapsort extends EstadisticoK{
 
 	private static int heapSize;
     private static int k;
-    private static int elementK;
-    private static int processTime;
-    private static List<Integer> conjuntoElementos;
     
     public KHeapsort(List<Integer> A,  int kElegido) {
     	conjuntoElementos = new ArrayList<Integer>(A);
@@ -19,24 +16,28 @@ public class KHeapsort {
     	k = kElegido;
     	elementK = -1;
     
-    	if (k <= heapSize) 
+    	if (k < heapSize){
+    		long timeStart = System.nanoTime();
     		procesar();
-    	else
+    		long timeEnd = System.nanoTime();
+    		this.processTime = timeEnd - timeStart;
+    	} else {
     		System.out.println("Tamaño fuera de rango");
+    	}
     }
     
-    private static void procesar() {
+    private void procesar() {
         ordenamientoInicial();       
         setearElemento();
     }
     
-    private static void ordenamientoInicial() {
+    private void ordenamientoInicial() {
         for(int i=heapSize/2 ; i>=0 ;i--) {
         	heapify(i);
         }
     }
     
-    private static void heapify(int i) {
+    private void heapify(int i) {
         int l=LEFT(i);
         int r=RIGHT(i);
         int indiceDelElementoMasPequeno = -1;
@@ -58,9 +59,9 @@ public class KHeapsort {
         }
     }
     
-    private static void setearElemento() {
-        for(int i=1 ; i<=k ; i++) {
-        	int ultimo = conjuntoElementos.size() - i;
+    private void setearElemento() {
+        for(int i=0 ; i<=k ; i++) {
+        	int ultimo = conjuntoElementos.size() - i - 1;
         	
             Integer temp = conjuntoElementos.get(0);
             conjuntoElementos.set(0, conjuntoElementos.get(ultimo));
@@ -72,35 +73,12 @@ public class KHeapsort {
         if (heapSize < conjuntoElementos.size()) elementK = conjuntoElementos.get(heapSize);
     }
     
-    private static int LEFT(int i) {
+    private int LEFT(int i) {
         return 2*i+1;
     }
 
-    private static int RIGHT(int i) {
+    private int RIGHT(int i) {
     	return 2*i+2;
     }
     
-    public int getElementK() {
-    	return elementK;
-    }
-
-    public static void main(String[] args) {
-
-    	List<Integer> A = new ArrayList<Integer>();
-    	A.add(4);
-    	A.add(1);
-    	A.add(3);
-    	A.add(2);
-    	A.add(16);
-    	A.add(9);
-    	A.add(10);
-    	A.add(14);
-    	A.add(8);
-    	A.add(7);
-    	
-    	int k = 11;
-    	
-    	KHeapsort kh = new KHeapsort(A, k);
-    	System.out.println(kh.getElementK());
-    }
 }
