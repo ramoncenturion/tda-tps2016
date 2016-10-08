@@ -6,9 +6,11 @@ import java.util.List;
 //import java.util.Scanner;
 
 import algoritmosOrdenK.FuerzaBruta;
+import algoritmosOrdenK.HeapSelect;
 import algoritmosOrdenK.KHeapsort;
 import algoritmosOrdenK.KSelecciones;
 import algoritmosOrdenK.OrdenarSeleccionar;
+import algoritmosOrdenK.QuickSelect;
 
 public class Main {
 
@@ -123,6 +125,35 @@ public class Main {
 	    System.out.println("Maximo: "+khMax.getElementK());
 	    System.out.println("Time: "+ khMax.getProcessTime());
 
+    	System.out.println("\n****************************");
+	    System.out.println("HeapSelect");
+	    
+    	HeapSelect heapSelMin = new HeapSelect(lectorOrdenK.getConjuntoElementos(), minimo);
+	    System.out.println("Minimo: "+heapSelMin.getElementK());
+	    System.out.println("Time: "+ heapSelMin.getProcessTime());
+
+    	HeapSelect heapSelMed = new HeapSelect(lectorOrdenK.getConjuntoElementos(), mediana);
+	    System.out.println("Mediana: "+heapSelMed.getElementK());
+	    System.out.println("Time: "+ heapSelMed.getProcessTime());
+
+	    HeapSelect heapSelMax = new HeapSelect(lectorOrdenK.getConjuntoElementos(), maximo);
+	    System.out.println("Maximo: "+heapSelMax.getElementK());
+	    System.out.println("Time: "+ heapSelMax.getProcessTime());
+	    
+    	System.out.println("\n****************************");
+	    System.out.println("QuickSelect");
+	    
+    	QuickSelect quickSelMin = new QuickSelect(lectorOrdenK.getConjuntoElementos(), minimo);
+	    System.out.println("Minimo: "+quickSelMin.getElementK());
+	    System.out.println("Time: "+ quickSelMin.getProcessTime());
+
+    	QuickSelect quickSelMed = new QuickSelect(lectorOrdenK.getConjuntoElementos(), mediana);
+	    System.out.println("Mediana: "+quickSelMed.getElementK());
+	    System.out.println("Time: "+ quickSelMed.getProcessTime());
+
+    	QuickSelect quickSelMax = new QuickSelect(lectorOrdenK.getConjuntoElementos(), maximo);
+	    System.out.println("Maximo: "+quickSelMax.getElementK());
+	    System.out.println("Time: "+ quickSelMax.getProcessTime());
 	}
 
 }

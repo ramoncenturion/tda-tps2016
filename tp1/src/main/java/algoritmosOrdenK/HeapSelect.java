@@ -8,8 +8,10 @@ public class HeapSelect extends EstadisticoK{
 	public HeapSelect(List<Integer> A, int kElegido) {
 		conjuntoElementos = new ArrayList<Integer>(A);
 		k = kElegido;
-		
+		long timeStart = System.nanoTime();
 		process();
+		long timeEnd = System.nanoTime();
+		this.processTime = timeEnd - timeStart;
 	}
 	
 	private void process() {
@@ -52,11 +54,5 @@ public class HeapSelect extends EstadisticoK{
 				return;
 			}
 		}
-	}
-	
-	private void swap(int first, int last) {
-		Integer temp = conjuntoElementos.get(first);
-		conjuntoElementos.set(first, conjuntoElementos.get(last));
-		conjuntoElementos.set(last, temp);
 	}
 }
