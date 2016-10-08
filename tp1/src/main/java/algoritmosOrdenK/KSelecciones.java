@@ -30,39 +30,23 @@ public class KSelecciones {
 		System.out.println("Mediana: "+medianaK);
 		System.out.println("Maximo: "+maximoK);
 	}
-
-	/**
-	 *  function select(list[1..n], k)
-     for i from 1 to k
-         minIndex = i
-         minValue = list[i]
-         for j from i+1 to n
-             if list[j] < minValue
-                 minIndex = j
-                 minValue = list[j]
-         swap list[i] and list[minIndex]
-     return list[k]
-     
-	 * @param ordenK
-	 * @param conjuntoElementos
-	 * @return
-	 */
 	
 	private int obtenerElementoOrdenK(int ordenK, List<Integer> conjuntoElementos) {
 		int primero = 0;
-		int k;
-		for (k = 0; k < ordenK+1; k++) {
-			int posicionMinimo = 1;
-			for (int i = 1; i < conjuntoElementos.size(); i++) {
-				if (conjuntoElementos.get(i) < conjuntoElementos.get(posicionMinimo)){
-					posicionMinimo = i;
+		for (int i = 0; i < ordenK+1; i++) {
+			int minIndex = i;
+			int minValue = conjuntoElementos.get(i);
+			for (int j = i+1; j < conjuntoElementos.size(); j++) {
+				if (conjuntoElementos.get(j) < minValue){
+					minIndex = j;
+					minValue =conjuntoElementos.get(minIndex);
 				}
 			}
-			int aux = conjuntoElementos.get(posicionMinimo);
-			conjuntoElementos.set(posicionMinimo,conjuntoElementos.get(primero));
-			conjuntoElementos.set(primero,aux);
+			int aux = conjuntoElementos.get(i);
+			conjuntoElementos.set(i,conjuntoElementos.get(minIndex));
+			conjuntoElementos.set(minIndex,aux);
 		}
-		return conjuntoElementos.get(primero);
+		return conjuntoElementos.get(ordenK);
 	}
 
 }

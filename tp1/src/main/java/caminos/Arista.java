@@ -1,4 +1,4 @@
-package main.java.caminos;
+package caminos;
 
 public class Arista {
 	
