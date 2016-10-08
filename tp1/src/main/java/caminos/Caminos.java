@@ -28,9 +28,11 @@ public abstract class Caminos {
 		
 		for (int i = src; i < edge.length; i++) {
 			Arista arista = edge[i];
-			camino.add(arista);
-			if (arista.getDst() == v) {
-				break;
+			if (arista != null) {
+				camino.add(arista);
+				if (arista.getDst() == v) {
+					break;
+				}
 			}
 		}
 		

@@ -10,6 +10,9 @@ public class BFS extends Caminos {
 	public BFS(Digraph grafo, int origin, int destino) {
 	    super(grafo, origin);
 	    
+	    dist = new double[grafo.v()];
+	    edge = new Arista[(grafo.v() * grafo.v())];
+	    
 	    for (int i = 0; i < grafo.v(); i++) {
 	    	dist[i] = Double.POSITIVE_INFINITY;
 	    }
@@ -23,7 +26,7 @@ public class BFS extends Caminos {
             for (int w : grafo.adj(v)) {
                 if (!visitado(w)) {
                 	
-                	edge[w] = new Arista(v, w, 0);
+                	edge[v] = new Arista(v, w, 0);
                 	dist[w] = dist[v] + 1;
                 	vecinos.add(w);
                 }
