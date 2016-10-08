@@ -1,10 +1,8 @@
 package caminos;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
-import java.util.Stack;
 
 public abstract class Caminos {
 	

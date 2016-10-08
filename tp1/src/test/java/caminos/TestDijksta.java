@@ -28,7 +28,7 @@ public class TestDijksta {
 		grafo.add_edge(0, 1, 2);
 		grafo.add_edge(1, 2, 1);
 		grafo.add_edge(2, 3, 3);
-		grafo.add_edge(1, 3, 2);
+		grafo.add_edge(1, 3, 5);
 		
 		dijkstra = new Dijkstra(grafo, origin, destino);
 		
