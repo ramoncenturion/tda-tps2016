@@ -1,5 +1,7 @@
 package algoritmosOrdenK;
 
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -12,24 +14,15 @@ import java.util.List;
  * @author 
  *
  */
-public class FuerzaBruta {
+public class FuerzaBruta extends EstadisticoK{
 
-	private List<Integer> conjuntoElementos;
-
-	public FuerzaBruta(List<Integer> conjuntoElementos) {
-		this.conjuntoElementos = conjuntoElementos;
-		int minimo = 0;
-		int maximo = this.conjuntoElementos.size()-1;
-		int mediana = this.conjuntoElementos.size()/2;
+	public FuerzaBruta(List<Integer> conjuntoElementos, int ordenK) {
+		this.conjuntoElementos = new ArrayList<Integer>(conjuntoElementos);
 		
-		int minimoK = obtenerElementoOrdenK(minimo);
-		int medianaK = obtenerElementoOrdenK(mediana);
-		int maximoK = obtenerElementoOrdenK(maximo);
-		
-		System.out.println("Minimo: "+minimoK);
-		System.out.println("Mediana: "+medianaK);
-		System.out.println("Maximo: "+maximoK);
-		
+		long timeStart = System.nanoTime();
+		this.elementK = obtenerElementoOrdenK(ordenK);
+		long timeEnd = System.nanoTime();
+		this.processTime = timeEnd - timeStart;
 	}
 
 	private int obtenerElementoOrdenK(int ordenK) {
@@ -52,5 +45,4 @@ public class FuerzaBruta {
 		}
 		return (posicioncandidato == ordenK);
 	}
-
 }
