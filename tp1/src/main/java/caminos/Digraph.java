@@ -6,15 +6,22 @@ import java.util.List;
 public class Digraph {
 	
 	private final int v; // Cantidad de vertices
-	private int e;		// Cantdad de aristas
+	private int e;		// Cantidad de aristas
 	private List<List<Integer>> adj;
 	private List<Arista> aristas;
+	private double[][] matrizDeAdyacencia;
 	
 	public Digraph(int v) {
 		this.v = v;
 		this.e = 0;
 		this.adj = new ArrayList<List<Integer>>();
 		this.aristas = new ArrayList<Arista>();
+		this.matrizDeAdyacencia = new double[v][v];
+		for (int i=0 ; i<v ; i++) {
+			for (int j=0 ; j<v ; j++) {
+				this.matrizDeAdyacencia[i][j] = 0;
+			}
+		}
 		
 		for (int i = 0; i < v; i++) {
 			adj.add(new ArrayList<Integer>());
@@ -64,6 +71,8 @@ public class Digraph {
 		this.adj.get(u).add(v);
 		this.aristas.add(arista);
 		this.e++;
+		
+		this.matrizDeAdyacencia[u][v] = weight;
 	}
 	
 	public List<List<Integer>> iter() {
@@ -74,6 +83,7 @@ public class Digraph {
 		return aristas;
 	}
 	
-	
-	
+	public double[][] getMatrizDeAdyacencia() {
+		return matrizDeAdyacencia;
+	}
 }
