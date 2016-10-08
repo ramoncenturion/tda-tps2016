@@ -10,8 +10,8 @@ import algoritmosOrdenK.OrdenarSeleccionar;
 
 public class Main {
 
-	private static String entradaGrafo = "C:/Dev/tda/tda-tps2016/tp1/src/main/resources/entradaGrafos.txt";
-	private static String entradaOrdenK = "C:/Dev/tda/tda-tps2016/tp1/src/main/resources/entradaOrdenK.txt";
+	private static String entradaGrafo = "C:\\Users\\Usuario\\git\\tda-tps2016\\tp1\\src\\main\\resources\\entradaGrafos.txt";
+	private static String entradaOrdenK = "C:\\Users\\Usuario\\git\\tda-tps2016\\tp1\\src\\main\\resources\\entradaOrdenK.txt";
 	
 	public static void main(String[] args) {
 		
@@ -51,6 +51,8 @@ public class Main {
 	    System.out.println("Ordenar y seleccionar");
 	    OrdenarSeleccionar algoOrdenarSeleccionar = new OrdenarSeleccionar(lectorOrdenK.getConjuntoElementos());
 
+	    System.out.println("\n****************************");
+	    System.out.println("K selecciones");
 	    KSelecciones algoKSelecciones = new KSelecciones(lectorOrdenK.getConjuntoElementos());
 	}
 
