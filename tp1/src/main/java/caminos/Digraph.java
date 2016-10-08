@@ -29,6 +29,7 @@ public class Digraph {
 		return e;
 	}
 	
+	// Devuelve las aristas adjacentes a un nodo
 	public List<Arista> adj_e(int v) {
 		
 		List<Arista> aristasAdy = new ArrayList<Arista>();
@@ -40,6 +41,17 @@ public class Digraph {
 		}
 		
 		return aristasAdy;
+	}
+	
+	// Devuelve la arista que une el vertice1 y el vertice2
+	// Null si no existe.
+	public Arista getArista(int vertice1, int vertice2) {
+		for (Arista arista : this.adj_e(vertice1)) {
+			if (arista.getSrc() == vertice1 && arista.getDst() == vertice2) {
+				return arista;
+			}
+		}
+		return null;
 	}
 	
 	public List<Integer> adj(int v) {
@@ -61,5 +73,7 @@ public class Digraph {
 	public List<Arista> iter_edges() {
 		return aristas;
 	}
+	
+	
 	
 }

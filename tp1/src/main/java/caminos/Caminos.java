@@ -6,7 +6,7 @@ import java.util.List;
 public abstract class Caminos {
 	
 	private int src;
-	private Digraph grafo;
+	protected Digraph grafo;
 	protected Arista edge[];
 	
 	protected Caminos(Digraph g, int origin) {

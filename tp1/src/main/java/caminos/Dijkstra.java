@@ -49,6 +49,7 @@ public class Dijkstra extends Caminos {
 		List<Arista> camino = new ArrayList<Arista>();
 		for (int i=1 ; i<nodos.size() ; i++) {
 			camino.add(this.grafo.getArista(nodos.get(i-1), nodos.get(i)));
+			if (nodos.get(i) == v) break;
 		}
 		return camino;
 	}
