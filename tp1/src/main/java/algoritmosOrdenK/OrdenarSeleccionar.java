@@ -1,9 +1,9 @@
 package algoritmosOrdenK;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Comparator;
 import java.util.List;
-import java.util.Random;
 
 /**
  * Ordenar y seleccionar: 
@@ -13,30 +13,20 @@ import java.util.Random;
  * @author 
  *
  */
-public class OrdenarSeleccionar {
+public class OrdenarSeleccionar extends EstadisticoK {
 
-	public OrdenarSeleccionar(List<Integer> conjuntoElementos) {
-		List<Integer> conjuntoElementosParaMin = new ArrayList<Integer>(conjuntoElementos);
-		List<Integer> conjuntoElementosParaMax = new ArrayList<Integer>(conjuntoElementos);
-		List<Integer> conjuntoElementosParaMed = new ArrayList<Integer>(conjuntoElementos);
-		
-		int minimo = 0;
-		int maximo = conjuntoElementos.size()-1;
-		int mediana = conjuntoElementos.size()/2;
-		
-		int minimoK = obtenerElementoOrdenK(minimo, conjuntoElementosParaMin);
-		int medianaK = obtenerElementoOrdenK(mediana, conjuntoElementosParaMed);
-		int maximoK = obtenerElementoOrdenK(maximo, conjuntoElementosParaMax);
-		
-		System.out.println("Candidato:"+minimoK);
-		System.out.println("Candidato:"+medianaK);
-		System.out.println("Candidato:"+maximoK);
+	public OrdenarSeleccionar(List<Integer> conjuntoElementos, int ordenK) {		
+		this.conjuntoElementos = new ArrayList<Integer>(conjuntoElementos);
+		long timeStart = System.nanoTime();
+		this.elementK = obtenerElementoOrdenK(ordenK);
+		long timeEnd = System.nanoTime();
+		this.processTime = timeEnd - timeStart;
 	}
 
 
-	private int obtenerElementoOrdenK(int ordenK, List<Integer> conjuntoElementos) {
-		this.ordenar(conjuntoElementos);
-		return conjuntoElementos.get(ordenK);
+	private int obtenerElementoOrdenK(int ordenK) {
+		this.ordenar(this.conjuntoElementos);
+		return this.conjuntoElementos.get(ordenK);
 	}
 
 

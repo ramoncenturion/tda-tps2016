@@ -1,6 +1,7 @@
 package algoritmosOrdenK;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -11,28 +12,17 @@ import java.util.List;
  * @author 
  *
  */
-public class KSelecciones {
+public class KSelecciones extends EstadisticoK {
 
-	public KSelecciones(List<Integer> conjuntoElementos) {
-		List<Integer> conjuntoElementosParaMin = new ArrayList<Integer>(conjuntoElementos);
-		List<Integer> conjuntoElementosParaMax = new ArrayList<Integer>(conjuntoElementos);
-		List<Integer> conjuntoElementosParaMed = new ArrayList<Integer>(conjuntoElementos);
-		
-		int minimo = 0;
-		int maximo = conjuntoElementos.size()-1;
-		int mediana = conjuntoElementos.size()/2;
-		
-		int minimoK = obtenerElementoOrdenK(minimo, conjuntoElementosParaMin);
-		int medianaK = obtenerElementoOrdenK(mediana, conjuntoElementosParaMed);
-		int maximoK = obtenerElementoOrdenK(maximo, conjuntoElementosParaMax);
-		
-		System.out.println("Minimo: "+minimoK);
-		System.out.println("Mediana: "+medianaK);
-		System.out.println("Maximo: "+maximoK);
+	public KSelecciones(List<Integer> conjuntoElementos, int ordenK) {
+		this.conjuntoElementos = new ArrayList<Integer>(conjuntoElementos);
+		long timeStart = System.nanoTime();
+		this.elementK = obtenerElementoOrdenK(ordenK);
+		long timeEnd = System.nanoTime();
+		this.processTime = timeEnd - timeStart;
 	}
 	
-	private int obtenerElementoOrdenK(int ordenK, List<Integer> conjuntoElementos) {
-		int primero = 0;
+	private int obtenerElementoOrdenK(int ordenK) {
 		for (int i = 0; i < ordenK+1; i++) {
 			int minIndex = i;
 			int minValue = conjuntoElementos.get(i);

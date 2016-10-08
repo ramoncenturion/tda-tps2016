@@ -14,7 +14,6 @@ public class Main {
 	private static String entradaOrdenK = "C:\\Dev\\tda\\tda-tps2016\\tp1\\src\\main\\resources\\entradaOrdenK.txt";
 	
 	public static void main(String[] args) {
-		
 		// Descomentar para ingresar el path por consola
 /*		System.out.println("Ingrese la direccion el archivo a procesar");
 		String entradaTeclado = "";
@@ -40,20 +39,59 @@ public class Main {
 	    List<Integer> elementos = lectorOrdenK.getConjuntoElementos();
 	    System.out.println("Elementos:");
 	    for (Integer elemento : elementos) {
-			System.out.print(elemento+" | ");
+			System.out.print(elemento+" | "); 
 		}
 
+	    int minimo = 0;
+		int maximo = lectorOrdenK.getConjuntoElementos().size()-1;
+		int mediana = lectorOrdenK.getConjuntoElementos().size()/2;
+	    
 	    System.out.println("\n****************************");
-	    System.out.println("\nFuerza Bruta");
-	    FuerzaBruta algoFuerzaBruta = new FuerzaBruta(lectorOrdenK.getConjuntoElementos());
+	    System.out.println("Fuerza Bruta");
+	    
+	    FuerzaBruta algoFuerzaBrutaMin = new FuerzaBruta(lectorOrdenK.getConjuntoElementos(),minimo);
+	    System.out.println("Minimo: "+algoFuerzaBrutaMin.getElementK());
+	    System.out.println("Time: "+ algoFuerzaBrutaMin.getProcessTime());
+	    
+	    FuerzaBruta algoFuerzaBrutaMed = new FuerzaBruta(lectorOrdenK.getConjuntoElementos(),mediana);
+	    System.out.println("Mediana: "+algoFuerzaBrutaMed.getElementK());
+	    System.out.println("Time: "+ algoFuerzaBrutaMed.getProcessTime());
 
+	    FuerzaBruta algoFuerzaBrutaMax = new FuerzaBruta(lectorOrdenK.getConjuntoElementos(),maximo);
+	    System.out.println("Maximo: "+algoFuerzaBrutaMax.getElementK());
+	    System.out.println("Time: "+ algoFuerzaBrutaMax.getProcessTime());
+	    
+	    
 	    System.out.println("\n****************************");
 	    System.out.println("Ordenar y seleccionar");
-	    OrdenarSeleccionar algoOrdenarSeleccionar = new OrdenarSeleccionar(lectorOrdenK.getConjuntoElementos());
-
+	    
+	    OrdenarSeleccionar algoOrdSelMin = new OrdenarSeleccionar(lectorOrdenK.getConjuntoElementos(),minimo);
+	    System.out.println("Minimo: " + algoOrdSelMin.getElementK());
+	    System.out.println("Time: " + algoOrdSelMin.getProcessTime());
+	    
+	    OrdenarSeleccionar algoOrdSelMed = new OrdenarSeleccionar(lectorOrdenK.getConjuntoElementos(),mediana);
+	    System.out.println("Mediana: " + algoOrdSelMed.getElementK());
+	    System.out.println("Time: "+ algoOrdSelMed.getProcessTime());
+	    	    
+	    OrdenarSeleccionar algoOrdSelMax = new OrdenarSeleccionar(lectorOrdenK.getConjuntoElementos(),maximo);
+	    System.out.println("Maximo: "+algoOrdSelMax.getElementK());
+	    System.out.println("Time: "+ algoOrdSelMax.getProcessTime());
+	    
 	    System.out.println("\n****************************");
 	    System.out.println("K selecciones");
-	    KSelecciones algoKSelecciones = new KSelecciones(lectorOrdenK.getConjuntoElementos());
+	    
+	    KSelecciones algoKSelMin = new KSelecciones(lectorOrdenK.getConjuntoElementos(),minimo);
+	    System.out.println("Minimo: "+algoKSelMin.getElementK());
+	    System.out.println("Time: "+ algoKSelMin.getProcessTime());
+	    
+	    KSelecciones algoKSelMed = new KSelecciones(lectorOrdenK.getConjuntoElementos(),mediana);
+	    System.out.println("Mediana: "+algoKSelMed.getElementK());
+	    System.out.println("Time: "+ algoKSelMed.getProcessTime());
+	    
+	    KSelecciones algoKSelMax = new KSelecciones(lectorOrdenK.getConjuntoElementos(),maximo);
+	    System.out.println("Maximo: "+algoKSelMax.getElementK());
+	    System.out.println("Time: "+ algoKSelMax.getProcessTime());
+	    
 	}
 
 }
