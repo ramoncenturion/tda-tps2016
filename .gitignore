@@ -10,7 +10,7 @@
 .project
 .settings/
 *.iml
-tp1/*.project
+*.project
 
 # Hidden eclipse
 .metadata
