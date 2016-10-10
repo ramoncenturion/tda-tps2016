@@ -70,6 +70,33 @@ public class TestDijksta {
 	}
 	
 	/**
+	 * Grafo similar al anterior, pero modificando el camino mas largo, para que sea mas corto:
+	 * el minimo tiene longitud 4.
+	 * el otro tiene longitud 6. -> Minimo del grafo anterior
+	 */
+	@Test
+	public void testDijkstraDeberiaEncontrarOtroCaminoMinimo() {
+		
+		double caminoMinimo = 4;
+		inicializarGrafo(4);
+		inicializarOrigenDestino(0, 3);
+		
+		grafo.add_edge(0, 1, 2);
+		grafo.add_edge(1, 2, 1);
+		grafo.add_edge(2, 3, 3);
+		grafo.add_edge(1, 3, 2);
+		
+		encontrarCamino();
+		
+		double sumaDePesos = 0;
+		for (Arista arista : camino) {
+			sumaDePesos += arista.getWeight();
+		}
+		
+		Assert.assertTrue(sumaDePesos == caminoMinimo);
+	}
+	
+	/**
 	 * Se prueba Dijkstra en el grafo de wikipedia:
 	 * https://es.wikipedia.org/wiki/Algoritmo_de_Dijkstra
 	 * Camino Minimo: 20

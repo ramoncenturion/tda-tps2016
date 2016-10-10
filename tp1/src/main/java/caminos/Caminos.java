@@ -56,6 +56,10 @@ public abstract class Caminos {
 		return camino;
 	}
 	
+	
+	
+// Cuando el algoritmo de camino verifiquemos que ande 100%, borramos estas dos alternativas. Por ahora anda bien
+//	
 //	public List<Arista> camino(int v) {
 //		
 //		List<Arista> camino = new ArrayList<Arista>();

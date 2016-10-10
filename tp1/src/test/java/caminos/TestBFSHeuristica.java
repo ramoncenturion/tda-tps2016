@@ -1,7 +1,6 @@
 package caminos;
 
 import java.util.List;
-import java.util.PriorityQueue;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -47,18 +46,18 @@ public class TestBFSHeuristica {
 		Assert.assertTrue(camino != null);
 	}
 	
-	//@Test
-	public void testCola() {
-		PriorityQueue<Integer> queue = new PriorityQueue<>();
-		queue.add(1);
-		queue.add(2);
-		queue.add(3);
-		//...
-		
-		Integer val = null;
-		while( (val = queue.poll()) != null) {
-			System.out.println(val);
-		}
-	}
+//	@Test
+//	public void testCola() {
+//		PriorityQueue<Integer> queue = new PriorityQueue<>();
+//		queue.add(1);
+//		queue.add(2);
+//		queue.add(3);
+//		//...
+//		
+//		Integer val = null;
+//		while( (val = queue.poll()) != null) {
+//			System.out.println(val);
+//		}
+//	}
 	
 }
