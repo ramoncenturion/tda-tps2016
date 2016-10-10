@@ -10,3 +10,9 @@
 .project
 .settings/
 *.iml
+*.classpath
+*.project
+*.settings/
+
+# Hidden eclipse
+.metada
