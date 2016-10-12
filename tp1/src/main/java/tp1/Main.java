@@ -1,12 +1,20 @@
 package tp1;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.List;
 //import java.util.Scanner;
+
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
 
 import algoritmosOrdenK.FuerzaBruta;
 import algoritmosOrdenK.HeapSelect;
@@ -17,10 +25,14 @@ import algoritmosOrdenK.QuickSelect;
 
 public class Main {
 
-	private static String entradaGrafo = "C:\\Dev\\tda\\tda-tps2016\\tp1\\src\\main\\resources\\entradaGrafos.txt";
-	private static String entradaOrdenK = "C:\\Dev\\tda\\tda-tps2016\\tp1\\src\\main\\resources\\entradaOrdenK.txt";
-	private static String entradaFuerzaBruta = "C:\\Dev\\tda\\tda-tps2016\\tp1\\src\\main\\resources\\entradaFuerzaBruta.txt";
+	private static String entradaGrafo = "C:\\Users\\Usuario\\git\\tda-tps2016\\tp1\\src\\main\\resources\\entradaGrafos.txt";
+	private static String entradaOrdenK = "C:\\Users\\Usuario\\git\\tda-tps2016\\tp1\\src\\main\\resources\\entradaOrdenK.txt";
+	private static String entradaFuerzaBruta = "C:\\Users\\Usuario\\git\\tda-tps2016\\tp1\\src\\main\\resources\\entradaFuerzaBruta.txt";
 	private static FileWriter salida;
+	private static String rutaArchivoSalida = "c:\\dev\\archivoSalida.xls";
+	private static HSSFWorkbook libro;
+	private static HSSFSheet hoja;
+	private static int cantFilas = 0;
 	
 	public static void main(String[] args) throws IOException {
 		// Descomentar para ingresar el path por consola
@@ -29,6 +41,7 @@ public class Main {
 	    Scanner entradaEscaner = new Scanner(System.in);
 	    entradaTeclado = entradaEscaner.nextLine ();
 */
+		
 		
 		// para correr primer parte del TP
 	    LectorArchivo lectorOrdenK = new LectorArchivo(entradaFuerzaBruta,false);
@@ -55,11 +68,14 @@ public class Main {
 		int maximo = lectorOrdenK.getConjuntoElementos().size()-1;
 		int mediana = lectorOrdenK.getConjuntoElementos().size()/2;
 	    
-
-	    File file = new File("c:\\dev\\archivoSalida.xls");
-	    salida = new FileWriter(file);
-	    escribirFila("","Fuerza Bruta","");
-	    escribirFila("","Estadistico K","Time");
+		File archivoXLS = new File(rutaArchivoSalida );
+		archivoXLS.createNewFile();
+		libro = new HSSFWorkbook();
+		FileOutputStream archivo = new FileOutputStream(archivoXLS);
+		hoja = libro.createSheet("Estadisticas");
+		
+		escribirFila("", "Fuerza Bruta", "");
+		escribirFila("Estadistico K", "Value", "Time");
 		
 	    System.out.println("\n****************************");
 	    System.out.println("Fuerza Bruta");
@@ -170,15 +186,25 @@ public class Main {
     	QuickSelect quickSelMax = new QuickSelect(lectorOrdenK.getConjuntoElementos(), maximo);
 	    System.out.println("Maximo: "+quickSelMax.getElementK());
 	    System.out.println("Time: "+ quickSelMax.getProcessTime());
+	    
+	    
+	    
+	    libro.write(archivo);
+		archivo.close();
 	}
 
 	private static void escribirFila(String valorCol1, String valorCol2, String valorCol3) throws IOException {
-	    salida.write(valorCol1);
-	    salida.write("\t"); //pasamos a la siguiente columna
-	    salida.write(valorCol2);
-	    salida.write("\t"); //pasamos a la siguiente columna
-	    salida.write(valorCol3);
-	    salida.write("\n"); //pasamos a la siguiente fila		
+		int i = 0;
+		Row fila = hoja.createRow(cantFilas );
+		Cell celda1 = fila.createCell(i);
+		celda1.setCellValue(valorCol1);
+		i++;
+		Cell celda2 = fila.createCell(i);
+		celda2.setCellValue(valorCol2);
+		i++;
+		Cell celda3 = fila.createCell(i);
+		celda3.setCellValue(valorCol3);
+		cantFilas++;
 	}
 
 }
