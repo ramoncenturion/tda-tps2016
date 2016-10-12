@@ -22,7 +22,7 @@ public class KSelecciones extends EstadisticoK {
 	}
 	
 	private int obtenerElementoOrdenK(int ordenK) {
-		for (int i = 0; i < ordenK+1; i++) {
+		for (int i = 0; i <= ordenK; i++) {
 			int minIndex = i;
 			int minValue = conjuntoElementos.get(i);
 			for (int j = i+1; j < conjuntoElementos.size(); j++) {
