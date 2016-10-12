@@ -1,6 +1,9 @@
 package tp1;
 
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.List;
 //import java.util.Scanner;
@@ -16,8 +19,10 @@ public class Main {
 
 	private static String entradaGrafo = "C:\\Dev\\tda\\tda-tps2016\\tp1\\src\\main\\resources\\entradaGrafos.txt";
 	private static String entradaOrdenK = "C:\\Dev\\tda\\tda-tps2016\\tp1\\src\\main\\resources\\entradaOrdenK.txt";
+	private static String entradaFuerzaBruta = "C:\\Dev\\tda\\tda-tps2016\\tp1\\src\\main\\resources\\entradaFuerzaBruta.txt";
+	private static FileWriter salida;
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		// Descomentar para ingresar el path por consola
 /*		System.out.println("Ingrese la direccion el archivo a procesar");
 		String entradaTeclado = "";
@@ -26,7 +31,7 @@ public class Main {
 */
 		
 		// para correr primer parte del TP
-	    LectorArchivo lectorOrdenK = new LectorArchivo(entradaOrdenK,false);
+	    LectorArchivo lectorOrdenK = new LectorArchivo(entradaFuerzaBruta,false);
 		
 		// para correr segunda parte del TP
 	    LectorArchivo lectorGrafo = new LectorArchivo(entradaGrafo,true);
@@ -50,6 +55,12 @@ public class Main {
 		int maximo = lectorOrdenK.getConjuntoElementos().size()-1;
 		int mediana = lectorOrdenK.getConjuntoElementos().size()/2;
 	    
+
+	    File file = new File("c:\\dev\\archivoSalida.xls");
+	    salida = new FileWriter(file);
+	    escribirFila("","Fuerza Bruta","");
+	    escribirFila("","Estadistico K","Time");
+		
 	    System.out.println("\n****************************");
 	    System.out.println("Fuerza Bruta");
 	    
@@ -57,15 +68,20 @@ public class Main {
 	    System.out.println("Minimo: "+algoFuerzaBrutaMin.getElementK());
 	    System.out.println("Time: "+ algoFuerzaBrutaMin.getProcessTime());
 	    
+	    escribirFila("Minimo", String.valueOf(algoFuerzaBrutaMin.getElementK()),String.valueOf(algoFuerzaBrutaMin.getProcessTime()));
+		    
 	    FuerzaBruta algoFuerzaBrutaMed = new FuerzaBruta(lectorOrdenK.getConjuntoElementos(),mediana);
 	    System.out.println("Mediana: "+algoFuerzaBrutaMed.getElementK());
 	    System.out.println("Time: "+ algoFuerzaBrutaMed.getProcessTime());
 
+	    escribirFila("Mediana", String.valueOf(algoFuerzaBrutaMed.getElementK()),String.valueOf(algoFuerzaBrutaMed.getProcessTime()));
+	    
 	    FuerzaBruta algoFuerzaBrutaMax = new FuerzaBruta(lectorOrdenK.getConjuntoElementos(),maximo);
 	    System.out.println("Maximo: "+algoFuerzaBrutaMax.getElementK());
 	    System.out.println("Time: "+ algoFuerzaBrutaMax.getProcessTime());
 	    
-	    
+	    escribirFila("Maximo", String.valueOf(algoFuerzaBrutaMax.getElementK()),String.valueOf(algoFuerzaBrutaMax.getProcessTime()));
+
 	    System.out.println("\n****************************");
 	    System.out.println("Ordenar y seleccionar");
 	    
@@ -154,6 +170,15 @@ public class Main {
     	QuickSelect quickSelMax = new QuickSelect(lectorOrdenK.getConjuntoElementos(), maximo);
 	    System.out.println("Maximo: "+quickSelMax.getElementK());
 	    System.out.println("Time: "+ quickSelMax.getProcessTime());
+	}
+
+	private static void escribirFila(String valorCol1, String valorCol2, String valorCol3) throws IOException {
+	    salida.write(valorCol1);
+	    salida.write("\t"); //pasamos a la siguiente columna
+	    salida.write(valorCol2);
+	    salida.write("\t"); //pasamos a la siguiente columna
+	    salida.write(valorCol3);
+	    salida.write("\n"); //pasamos a la siguiente fila		
 	}
 
 }
