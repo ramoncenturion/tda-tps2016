@@ -1,22 +1,38 @@
 package caminos;
 
 import java.util.Comparator;
+import java.util.HashMap;
+import java.util.Map;
 
 public class HeuristicaEuclidiana extends Heuristica implements Comparator<Integer> {
 	
-	private Digraph grafo;
-	private int origen;
 	private int destino;
+	private Map<Integer, Posicion> vertices2D;
 	
 	public HeuristicaEuclidiana(Digraph grafo, int origen, int destino) {
-		this.grafo = grafo;
-		this.origen = origen;
 		this.destino = destino;
+		this.vertices2D = new HashMap<Integer, Posicion>();
+		
+		int x = 0;
+		int y = 0;
+		int columnas = (int) Math.sqrt(grafo.v()) + 1;
+		
+		for (int i = 0; i < grafo.v(); i++) {
+			
+			Posicion posicion = new Posicion(x,y);
+			vertices2D.put(i, posicion);
+			y++;
+			if (y >= columnas) {
+				x++;
+				y = 0;
+			}
+		}
 	}
 	
 	private double distancia(int v) {
-		double arg = Math.pow(v, 2) + Math.pow(destino, 2);
-		return Math.sqrt(arg);
+		Posicion inicio = vertices2D.get(v);
+		Posicion fin = vertices2D.get(destino);
+		return inicio.distancia(fin);
 	}
 	
 	@Override
