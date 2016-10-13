@@ -1,6 +1,5 @@
 package caminos;
 
-import java.util.Comparator;
 import java.util.PriorityQueue;
 import java.util.Queue;
 
@@ -8,11 +7,10 @@ public class BFSHeuristica extends Caminos {
 	
 private double dist[];
 
-	private int destino;
+	private HeuristicaEuclidiana heuristica;
 	
 	public BFSHeuristica(Digraph grafo, int origin, int destino) {
 	    super(grafo, origin);
-	    this.destino = destino;
 	    
 	    dist = new double[grafo.v()];
 	    edge = new Arista[(grafo.v() * grafo.v())];
@@ -21,7 +19,7 @@ private double dist[];
 	    	dist[i] = Double.POSITIVE_INFINITY;
 	    }
 	    
-	    HeuristicaEuclidiana heuristica = new HeuristicaEuclidiana(grafo, origin, destino);
+	    heuristica = new HeuristicaEuclidiana(grafo, origin, destino);
 	    Queue<Integer> vecinos = new PriorityQueue<Integer>(grafo.v(), heuristica);
 	    dist[origin] = 0;
 	    vecinos.add(origin);
@@ -46,6 +44,10 @@ private double dist[];
 
 	protected Arista edge_to(int v) { 
 		return edge[v]; 
+	}
+
+	public Heuristica getHeuristica() {
+		return heuristica;
 	}
 	
 }

@@ -61,10 +61,7 @@ public class TestDijksta {
 		
 		encontrarCamino();
 		
-		double sumaDePesos = 0;
-		for (Arista arista : camino) {
-			sumaDePesos += arista.getWeight();
-		}
+		double sumaDePesos = dijkstra.getPesoMinimo();
 		
 		Assert.assertTrue(sumaDePesos == caminoMinimo);
 	}
@@ -88,10 +85,7 @@ public class TestDijksta {
 		
 		encontrarCamino();
 		
-		double sumaDePesos = 0;
-		for (Arista arista : camino) {
-			sumaDePesos += arista.getWeight();
-		}
+		double sumaDePesos = dijkstra.getPesoMinimo();
 		
 		Assert.assertTrue(sumaDePesos == caminoMinimo);
 	}
@@ -120,10 +114,7 @@ public class TestDijksta {
 		
 		encontrarCamino();
 		
-		double sumaDePesos = 0;
-		for (Arista arista : camino) {
-			sumaDePesos += arista.getWeight();
-		}
+		double sumaDePesos = dijkstra.getPesoMinimo();
 		
 		Assert.assertTrue(sumaDePesos == caminoMinimo);
 	}

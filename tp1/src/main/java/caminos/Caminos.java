@@ -9,10 +9,12 @@ public abstract class Caminos {
 	private int src;
 	protected Digraph grafo;
 	protected Arista edge[];
+	private double pesoMinimo;
 	
 	protected Caminos(Digraph g, int origin) {
 		src = origin;
 		grafo = g;
+		pesoMinimo = -1;
 	}
 	
 	public abstract double distancia(int v);
@@ -44,18 +46,28 @@ public abstract class Caminos {
 		List<Arista> camino = new ArrayList<Arista>();
 		Boolean caminoEncontrado = false;
 		int ultimoSrc = v;
+		pesoMinimo = 0;
 		
-		while (!caminoEncontrado) {
+		while (!caminoEncontrado ) {
 			Arista arista = getAristaByDestino(ultimoSrc);
-			camino.add(arista);
-			ultimoSrc = arista.getSrc();
-			caminoEncontrado = ultimoSrc == this.src;
+	
+			if (arista != null) {
+				camino.add(arista);
+				pesoMinimo += arista.getWeight();
+				ultimoSrc = arista.getSrc();
+				caminoEncontrado = ultimoSrc == this.src;
+			} else {
+				break;
+			}
 		}
 		
 		Collections.reverse(camino);
 		return camino;
 	}
 	
+	public double getPesoMinimo() {
+		return pesoMinimo;
+	}
 	
 	
 // Cuando el algoritmo de camino verifiquemos que ande 100%, borramos estas dos alternativas. Por ahora anda bien

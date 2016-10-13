@@ -10,7 +10,7 @@ public class TestBFSHeuristica {
 	private Digraph grafo;
 	private int origen;
 	private int destino;
-	private BFSHeuristica bfs;
+	private BFSHeuristica bfsHeuristica;
 	private List<Arista> camino;
 	
 	private void inicializarGrafo(int cantidadVertices) {
@@ -23,8 +23,8 @@ public class TestBFSHeuristica {
 	}
 	
 	private void encontrarCamino() {
-		bfs = new BFSHeuristica(grafo, origen, destino);
-		camino = bfs.camino(destino);
+		bfsHeuristica = new BFSHeuristica(grafo, origen, destino);
+		camino = bfsHeuristica.camino(destino);
 	}
 	
 	@Test
@@ -55,7 +55,7 @@ public class TestBFSHeuristica {
 		
 		encontrarCamino();
 		
-		Assert.assertTrue(camino == null);
+		Assert.assertTrue(camino.size() == 0);
 	}
 	
 	@Test
@@ -68,7 +68,7 @@ public class TestBFSHeuristica {
 		
 		encontrarCamino();
 		
-		Heuristica heuristica = grafo.getHeuristica();
+		Heuristica heuristica = bfsHeuristica.getHeuristica();
 		
 		double distanciaHeuristica = heuristica.distancia(0);
 		
@@ -85,10 +85,10 @@ public class TestBFSHeuristica {
 		
 		encontrarCamino();
 		
-		Heuristica heuristica = grafo.getHeuristica();
+		Heuristica heuristica = bfsHeuristica.getHeuristica();
 		
 		double distanciaHeuristica = heuristica.distancia(0);
-		double distanciaTaxista = bfs.getPesoMinimo();
+		double distanciaTaxista = bfsHeuristica.getPesoMinimo();
 		
 		Assert.assertTrue(distanciaHeuristica < distanciaTaxista);
 	}
