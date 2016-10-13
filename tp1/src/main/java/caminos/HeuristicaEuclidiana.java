@@ -9,7 +9,7 @@ public class HeuristicaEuclidiana extends Heuristica implements Comparator<Integ
 	private int destino;
 	private Map<Integer, Posicion> vertices2D;
 	
-	public HeuristicaEuclidiana(Digraph grafo, int origen, int destino) {
+	public HeuristicaEuclidiana(Digraph grafo, int destino) {
 		this.destino = destino;
 		this.vertices2D = new HashMap<Integer, Posicion>();
 		
