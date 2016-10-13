@@ -15,7 +15,7 @@ public class HeuristicaEuclidiana extends Heuristica implements Comparator<Integ
 		
 		int x = 0;
 		int y = 0;
-		int columnas = (int) Math.sqrt(grafo.v()) + 1;
+		int columnas = (int) Math.ceil(Math.sqrt(grafo.v()));
 		
 		for (int i = 0; i < grafo.v(); i++) {
 			
@@ -29,7 +29,7 @@ public class HeuristicaEuclidiana extends Heuristica implements Comparator<Integ
 		}
 	}
 	
-	private double distancia(int v) {
+	public double distancia(int v) {
 		Posicion inicio = vertices2D.get(v);
 		Posicion fin = vertices2D.get(destino);
 		return inicio.distancia(fin);

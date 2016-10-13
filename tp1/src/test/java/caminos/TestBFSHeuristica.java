@@ -28,7 +28,7 @@ public class TestBFSHeuristica {
 	}
 	
 	@Test
-	public void testBFSHeuristica() {
+	public void testBFSHeuristicaDeberiaEncontrarUnCamino() {
 		inicializarGrafo(8);
 		inicializarOrigenDestino(0, 7);
 		
@@ -45,6 +45,54 @@ public class TestBFSHeuristica {
 		
 		Assert.assertTrue(camino != null);
 	}
+	
+	@Test
+	public void testBFSHeuristicaSinCaminoPosibleNoDeberiaEncontrarUnCamino() {
+		inicializarGrafo(4);
+		inicializarOrigenDestino(0, 3);
+		
+		grafo.add_edge(0, 1, 2);
+		
+		encontrarCamino();
+		
+		Assert.assertTrue(camino == null);
+	}
+	
+	@Test
+	public void testHeuristicaEuclidianaDeberiaDistarHipotenusa() {
+		inicializarGrafo(4);
+		inicializarOrigenDestino(0, 3);
+		
+		grafo.add_edge(0, 1, 2);
+		grafo.add_edge(1, 3, 3);
+		
+		encontrarCamino();
+		
+		Heuristica heuristica = grafo.getHeuristica();
+		
+		double distanciaHeuristica = heuristica.distancia(0);
+		
+		Assert.assertTrue(distanciaHeuristica == Math.sqrt(2));
+	}
+	
+	@Test
+	public void testHeuristicaEuclidianaDeberiaDistarMenosQueHeuristicaTaxista() {
+		inicializarGrafo(4);
+		inicializarOrigenDestino(0, 3);
+		
+		grafo.add_edge(0, 1, 2);
+		grafo.add_edge(1, 3, 3);
+		
+		encontrarCamino();
+		
+		Heuristica heuristica = grafo.getHeuristica();
+		
+		double distanciaHeuristica = heuristica.distancia(0);
+		double distanciaTaxista = bfs.getPesoMinimo();
+		
+		Assert.assertTrue(distanciaHeuristica < distanciaTaxista);
+	}
+	
 	
 //	@Test
 //	public void testCola() {
