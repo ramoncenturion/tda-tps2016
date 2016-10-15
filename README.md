@@ -1,6 +1,7 @@
 # Teoría de Algoritmos I
 
-Trabajo Práctico n.º 1
+Trabajo Práctico n.º 1 [[link](https://algoritmos-rw.github.io/tda/tp1.html)]
+
 El trabajo práctico consiste en las dos partes que se listan a continuación.
 
 Lineamientos básicos:
