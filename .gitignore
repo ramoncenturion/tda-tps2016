@@ -1,0 +1,16 @@
+*.class
+
+# Package Files #
+*.jar
+*.war
+*.ear
+
+# Hidden folders
+.classpath
+.project
+.settings/
+*.iml
+*.project
+
+# Hidden eclipse
+.metadata
