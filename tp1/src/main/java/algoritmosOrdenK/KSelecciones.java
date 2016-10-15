@@ -1,5 +1,6 @@
 package algoritmosOrdenK;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -10,10 +11,31 @@ import java.util.List;
  * @author 
  *
  */
-public class KSelecciones {
+public class KSelecciones extends EstadisticoK {
 
-	public KSelecciones(List<Integer> conjuntoElementos) {
-		// TODO Auto-generated constructor stub
+	public KSelecciones(List<Integer> conjuntoElementos, int ordenK) {
+		this.conjuntoElementos = new ArrayList<Integer>(conjuntoElementos);
+		long timeStart = System.nanoTime();
+		this.elementK = obtenerElementoOrdenK(ordenK);
+		long timeEnd = System.nanoTime();
+		this.processTime = timeEnd - timeStart;
+	}
+	
+	private int obtenerElementoOrdenK(int ordenK) {
+		for (int i = 0; i <= ordenK; i++) {
+			int minIndex = i;
+			int minValue = conjuntoElementos.get(i);
+			for (int j = i+1; j < conjuntoElementos.size(); j++) {
+				if (conjuntoElementos.get(j) < minValue){
+					minIndex = j;
+					minValue =conjuntoElementos.get(minIndex);
+				}
+			}
+			int aux = conjuntoElementos.get(i);
+			conjuntoElementos.set(i,conjuntoElementos.get(minIndex));
+			conjuntoElementos.set(minIndex,aux);
+		}
+		return conjuntoElementos.get(ordenK);
 	}
 
 }
