@@ -17,8 +17,6 @@ public class ParserEntradaRedFlujo {
 	private int cantidadProyectos;
 	private List<Area> areas = new ArrayList<Area>();
 	private List<Proyecto> proyectos = new ArrayList<Proyecto>();
-	
-    
     
     ParserEntradaRedFlujo(String direccion) throws NumberFormatException, IOException{
 		
@@ -64,29 +62,19 @@ public class ParserEntradaRedFlujo {
 		}
 	}
 
-
-
 	public List<Area> getAreas() {
 		return areas;
 	}
-
-
 
 	public void setAreas(List<Area> areas) {
 		this.areas = areas;
 	}
 
-
-
 	public List<Proyecto> getProyectos() {
 		return proyectos;
 	}
 
-
-
 	public void setProyectos(List<Proyecto> proyectos) {
 		this.proyectos = proyectos;
 	}
-
-	
 }
