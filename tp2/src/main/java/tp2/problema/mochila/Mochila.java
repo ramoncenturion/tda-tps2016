@@ -18,12 +18,14 @@ public class Mochila {
     	this.listaItems.add(new Item(peso,valor));
     }
     
-    public List<Item> resolver() {
+    public MochilaResult resolver() {
     	int n = this.listaItems.size(); // Cantidad de elementos 
     	int W = this.pesoMaximo;
     	
     	calcularMatrizdeSoluciones(n, W);
-    	return analizarSolucion(n, W);
+    	List<Item> itemsSolucion = analizarSolucion(n, W);
+    	
+    	return new MochilaResult(itemsSolucion, P[n][W]);
     }
     
     private void calcularMatrizdeSoluciones(int n, int W) {
