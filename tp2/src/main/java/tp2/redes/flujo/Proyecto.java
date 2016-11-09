@@ -5,12 +5,12 @@ import java.util.List;
 public class Proyecto {
 
 	private Integer idProyecto;
-	private Integer costo;
+	private Integer ganancia;
 	private List<Integer> areasNecesarias;
 	
-	public Proyecto(Integer idProyecto, Integer costo, List<Integer> areasNecesarias){
+	public Proyecto(Integer idProyecto, Integer ganancia, List<Integer> areasNecesarias){
 		this.idProyecto = idProyecto;
-		this.costo = costo;
+		this.ganancia = ganancia;
 		this.areasNecesarias = areasNecesarias;
 	}
 
@@ -22,12 +22,12 @@ public class Proyecto {
 		this.idProyecto = idProyecto;
 	}
 
-	public Integer getCosto() {
-		return costo;
+	public Integer getganancia() {
+		return ganancia;
 	}
 
-	public void setCosto(Integer costo) {
-		this.costo = costo;
+	public void setganancia(Integer ganancia) {
+		this.ganancia = ganancia;
 	}
 
 	public List<Integer> getAreasNecesarias() {
