@@ -13,11 +13,46 @@ public class Main {
 			
 			List<Proyecto> proyectos = parser.getProyectos();
 			List<Area> areas = parser.getAreas();
-			//de proyecto a areas
-			//creo un difgrafo de v=cant. proy + cant. areas + 2
-			//agrego las aristas de proyecto desde el sumidero (nodo 0) con peso igual a la ganancia
-			//agrego las aristas de proyecto a area segun las areas necesarias por proyecto con valor infinito
-			//agrego las aristas de areas al nodo final con el peso igual al costo
+			
+			//********************** Muestro como lei el archivo ****************			
+			for (Proyecto proyecto : proyectos) {
+				System.out.println("Proyecto: "+proyecto.getIdProyecto()+" - ganancia: "+proyecto.getGanancia());
+				String areasNecesarias = "";
+				for (Area area : proyecto.getAreasNecesarias()) {					
+					areasNecesarias += " Area-"+area.getId()+" Costo: "+area.getCosto();
+				}
+				System.out.println("Necesita:"+areasNecesarias);
+			}
+			//*******************************************************************
+			//Vertices = #Areas+#Proyectos+Sumidero+Destino
+			int cantidadAreas = parser.getCantidadAreas();
+			int cantidadProyectos = parser.getCantidadProyectos();
+			int cantidadVertices = cantidadAreas + cantidadProyectos+2;
+			int origen = 0;
+			int destino = cantidadVertices-1;
+			
+			int pesoInfinito = 0;
+			//----------------------------------------------
+			//Armo grafo de proyecto - area Version 
+			for (Proyecto proyecto : proyectos) {	
+				if (proyecto.getGanancia()>pesoInfinito){
+					pesoInfinito = proyecto.getGanancia();
+				}
+			}
+			
+			Digraph grafo = new Digraph(cantidadVertices);
+			for (Proyecto proyecto : proyectos) {				
+				grafo.add_edge(origen, proyecto.getIdProyecto(), proyecto.getGanancia());
+				for (Area area : proyecto.getAreasNecesarias()) {
+					grafo.add_edge(proyecto.getIdProyecto(), area.getId()+cantidadProyectos,pesoInfinito);
+				}
+			}
+			
+			for (Area area : areas) {
+				grafo.add_edge(area.getId()+cantidadProyectos, destino , area.getCosto());
+			}
+			//----------------------------------------------
+			
 			
 			//genero ford fulkerson para obtener el flujo maximo
 			//busco el corte minimal
