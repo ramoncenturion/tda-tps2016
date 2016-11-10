@@ -25,6 +25,7 @@ public class ParserEntradaRedFlujo {
 			fr = new FileReader(archivo);
 			br = new BufferedReader(fr);
 			String linea;
+			
 			if((linea=br.readLine()) != null){
 				cantidadAreas = Integer.valueOf(linea);
 			}
@@ -34,31 +35,26 @@ public class ParserEntradaRedFlujo {
 			
 			for (int i = 0; i < cantidadAreas; i++) {
 				if((linea=br.readLine()) != null){
-					areas.add( new Area( Integer.valueOf(i), Integer.valueOf(linea)) );
+					areas.add( new Area( Integer.valueOf(i+1), Integer.valueOf(linea)) );
 				}				
 			}
 			
 			Integer idProyecto = 1;
 			while((linea=br.readLine()) != null){
-				
+				List<Area> areasNecesarias = new ArrayList<Area>();
 				String[] elementosSplit = linea.split(" ");
-				List<Integer> areasNecesarias = new ArrayList<Integer>();
 		       	Integer ganancia = Integer.valueOf(elementosSplit[0]);
-		       	
 				for (int i = 1; i < elementosSplit.length; i++) {
-		       		areasNecesarias.add(Integer.valueOf(elementosSplit[i]));
+					Area area = areas.get(Integer.valueOf(elementosSplit[i])-1);
+		       		areasNecesarias.add(area);
 		       	}
-				
-				Proyecto proyectoNew = new Proyecto(idProyecto, ganancia, areasNecesarias); 
-
-				proyectos.add(proyectoNew);
-				
+				Proyecto proyectoNuevo = new Proyecto(idProyecto, ganancia, areasNecesarias); 
+				proyectos.add(proyectoNuevo);
 				idProyecto++;
 			}
 
 		} catch (FileNotFoundException e) {
 			System.out.println("No se pudo abrir el archivo.");
-			e.printStackTrace();
 		}
 	}
 
@@ -76,5 +72,21 @@ public class ParserEntradaRedFlujo {
 
 	public void setProyectos(List<Proyecto> proyectos) {
 		this.proyectos = proyectos;
+	}
+
+	public int getCantidadAreas() {
+		return cantidadAreas;
+	}
+
+	public void setCantidadAreas(int cantidadAreas) {
+		this.cantidadAreas = cantidadAreas;
+	}
+
+	public int getCantidadProyectos() {
+		return cantidadProyectos;
+	}
+
+	public void setCantidadProyectos(int cantidadProyectos) {
+		this.cantidadProyectos = cantidadProyectos;
 	}
 }
