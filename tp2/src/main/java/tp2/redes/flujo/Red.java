@@ -3,16 +3,16 @@ package tp2.redes.flujo;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Digraph {
+public class Red {
 	
-	private final int v; // Cantidad de vertices
-	private int e;		// Cantidad de aristas
+	private final int n; // Cantidad de vertices
+	private int m;		// Cantidad de aristas
 	private List<List<Integer>> adj;
 	private List<Arista> aristas;
 	
-	public Digraph(int v) {
-		this.v = v;
-		this.e = 0;
+	public Red(int v) {
+		this.n = v;
+		this.m = 0;
 		this.adj = new ArrayList<List<Integer>>();
 		this.aristas = new ArrayList<Arista>();
 		
@@ -21,15 +21,26 @@ public class Digraph {
 		}
 	}
 	
-	public int v() {
-		return v;
+	/**
+	 * 
+	 * @return cantidad de vertices
+	 */
+	public int n() {
+		return n;
+	}
+	/**
+	 * 
+	 * @return cantidad de aristas
+	 */
+	public int m() {
+		return m;
 	}
 	
-	public int e() {
-		return e;
-	}
-	
-	// Devuelve las aristas adjacentes a un nodo
+	/**
+	 *
+	 * @param v
+	 * @return aristas adjacentes a un nodo
+	 */
 	public List<Arista> adj_e(int v) {
 		
 		List<Arista> aristasAdy = new ArrayList<Arista>();
@@ -43,8 +54,13 @@ public class Digraph {
 		return aristasAdy;
 	}
 	
-	// Devuelve la arista que une el vertice1 y el vertice2
-	// Null si no existe.
+	/**
+	 *  Devuelve la arista que une el vertice1 y el vertice2
+	 *  Null si no existe.
+	 * @param vertice1
+	 * @param vertice2
+	 * @return
+	 */
 	public Arista getArista(int vertice1, int vertice2) {
 		for (Arista arista : this.adj_e(vertice1)) {
 			if (arista.getSrc() == vertice1 && arista.getDst() == vertice2) {
@@ -54,25 +70,21 @@ public class Digraph {
 		return null;
 	}
 	
-	public List<Integer> adj(int v) {
-		return adj.get(v);
-	}
-	
-	public void add_edge(int u, int v, double weight) {
+	public void add_edge(int u, int v, int weight) {
 		Arista arista = new Arista(u, v, weight);
 		
 		this.adj.get(u).add(v);
 		this.aristas.add(arista);
-		this.e++;
+		this.m++;
 		
 	}
 	
-	public List<List<Integer>> iter() {
-		return adj;
+	public List<Arista> adj_fuente() {
+		return this.adj_e(0);
 	}
 	
-	public List<Arista> iter_edges() {
-		return aristas;
+	public List<Arista> adj_sumidero() {
+		return this.adj_e(this.n-1);
 	}
 	
 }
