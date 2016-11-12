@@ -8,27 +8,30 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import tp2.redes.flujo.Red;
+import tp2.redes.flujo.SelectorProyectos;
+
 public class RedFlujoTest {
 
-	@BeforeClass
-	public static void setUpBeforeClass() throws Exception {
-	}
-
-	@AfterClass
-	public static void tearDownAfterClass() throws Exception {
-	}
-
-	@Before
-	public void setUp() throws Exception {
-	}
-
-	@After
-	public void tearDown() throws Exception {
-	}
+	 private static final String PATH = "src/main/resources/tp2/redes/flujo/entradaRed.txt";
 
 	@Test
-	public void test() {
-		fail("Not yet implemented");
+	public void redtest() {
+		try {
+            SelectorProyectos selector = new SelectorProyectos(PATH);
+                        
+            int max_flujo = selector.getFordFulkerson().getFlujoMaximo();
+            Red red = selector.getRed();
+        
+            assertEquals(red.n(), 7);
+            assertEquals(red.m(), 8);
+            assertEquals(max_flujo, 29);
+            assertEquals(selector.getMaximaGanancia(), 1);
+            
+
+        } catch (Exception e) {
+            fail(e.getMessage());
+        }
 	}
 
 }

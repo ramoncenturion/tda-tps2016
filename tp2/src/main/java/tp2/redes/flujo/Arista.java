@@ -2,14 +2,16 @@ package tp2.redes.flujo;
 
 public class Arista {
 	
-	int sumidero;
-	int destino;
-	double peso;
+	private int sumidero;
+	private int destino;
+	private int capacidad;
+	private int flujo;
 	
-	public Arista(int src, int dst, double weight) {
+	public Arista(int src, int dst, int capacidad) {
 		sumidero = src;
 		destino = dst;
-		peso = weight;
+		this.capacidad = capacidad;
+		flujo = 0;
 	}
 	
 	public int getSrc() {
@@ -20,8 +22,16 @@ public class Arista {
 		return destino;
 	}
 	
-	public double getWeight() {
-		return peso;
+	public int getCapacidad() {
+		return capacidad;
+	}
+
+	public int getFlujo() {
+		return flujo;
+	}
+
+	public void setFlujo(int flujo) {
+		this.flujo = flujo;
 	}
 
 }
