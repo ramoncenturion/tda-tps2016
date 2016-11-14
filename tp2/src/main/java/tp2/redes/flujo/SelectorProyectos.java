@@ -9,7 +9,6 @@ import java.util.List;
 
 public class SelectorProyectos {
 
-//	private ParserEntradaRedFlujo parser;
 	private Red red = null;
 	private AlgoritmoFordFulkerson fordFulkerson;
 	private List<Integer> proyectosSeleccionados = new ArrayList<Integer>();
@@ -21,9 +20,7 @@ public class SelectorProyectos {
 	private int cantidadVertices = 0;
 	
 	public SelectorProyectos(String path) {
-//			parser = new ParserEntradaRedFlujo(path);
 			parserRed(path);
-//			this.generarRed();
 			aplicarFordFulkerson();
 			seleccionarProyectos();
 	}
@@ -70,28 +67,6 @@ public class SelectorProyectos {
 			e.printStackTrace();
 		}
 	}
-
-//	private void generarRed() {
-//		int cantidadAreas = parser.getCantidadAreas();
-//		int cantidadProyectos = parser.getCantidadProyectos();
-//		int cantidadVertices = cantidadAreas + cantidadProyectos + 2;
-//		int origen = 0;
-//		int destino = cantidadVertices-1;
-//		
-//		//Armo grafo de proyecto - area Version 
-//		this.red = new Red(cantidadVertices);
-//
-//		for (Area area : parser.getAreas()) {
-//			this.red.add_edge(area.getId()+cantidadProyectos,destino ,area.getCosto());
-//		}
-//		
-//		for (Proyecto proyecto : parser.getProyectos()) {				
-//			this.red.add_edge(origen, proyecto.getIdProyecto(), proyecto.getGanancia());
-//			for (Area area : proyecto.getAreasNecesarias()) {
-//				this.red.add_edge(proyecto.getIdProyecto(),area.getId()+cantidadProyectos,Integer.MAX_VALUE);
-//			}
-//		}
-//	}
 
 	private void aplicarFordFulkerson() {
 		this.fordFulkerson = new AlgoritmoFordFulkerson(this.red);
