@@ -1,6 +1,5 @@
 package tp2.problema.mochila;
 
-import java.util.LinkedList;
 import java.util.List;
 
 public class MochilaResult {

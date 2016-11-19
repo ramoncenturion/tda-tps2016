@@ -27,7 +27,7 @@ public class ViajanteAsimetricoTest {
 			e.printStackTrace();
 		}
 	}
-	
+	/*
 	@Test
 	public void testParser02() {
 		String filename = "D:\\TDA\\tda-tps2016\\tp2\\src\\main\\resources\\tp2\\viajante\\test02.txt";
@@ -63,5 +63,5 @@ public class ViajanteAsimetricoTest {
 			e.printStackTrace();
 		}
 	}
-	
+	*/
 }
