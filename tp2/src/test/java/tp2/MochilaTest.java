@@ -6,6 +6,10 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,7 +23,7 @@ import tp2.problema.mochila.Mochila;
 import tp2.problema.mochila.MochilaResult;
 
 public class MochilaTest {
-
+/*
 	@Test
 	public void testSimple() {
     	//System.out.println("[Simple Test]"); 
@@ -37,12 +41,12 @@ public class MochilaTest {
         assertEquals(7, solucion.getValorOptimo());
         assertEquals(2, solucion.getItemsSolucion().size());
 	}
-	
+	*/
 	@Test
 	public void testPisinger() {
 	
 		//String filename = "D:\\TDA\\tda-tps2016\\tp2\\src\\main\\resources\\tp2\\mochila\\smallcoeff_pisinger\\knapPI_1_50_1000.csv";
-		String filename = "D:\\TDA\\tda-tps2016\\tp2\\src\\main\\resources\\tp2\\mochila\\smallcoeff_pisinger\\knapPI_1_100_1000.csv";
+		//String filename = "D:\\TDA\\tda-tps2016\\tp2\\src\\main\\resources\\tp2\\mochila\\smallcoeff_pisinger\\knapPI_1_100_1000.csv";
 		//String filename = "D:\\TDA\\tda-tps2016\\tp2\\src\\main\\resources\\tp2\\mochila\\smallcoeff_pisinger\\knapPI_1_200_1000.csv";
 		//String filename = "D:\\TDA\\tda-tps2016\\tp2\\src\\main\\resources\\tp2\\mochila\\smallcoeff_pisinger\\knapPI_1_500_1000.csv";
 
@@ -52,18 +56,34 @@ public class MochilaTest {
 		//String filename = "D:\\TDA\\tda-tps2016\\tp2\\src\\main\\resources\\tp2\\mochila\\hardinstances_pisinger\\knapPI_11_50_1000.csv";
 		//String filename = "D:\\TDA\\tda-tps2016\\tp2\\src\\main\\resources\\tp2\\mochila\\hardinstances_pisinger\\knapPI_11_100_1000.csv";
 		//String filename = "D:\\TDA\\tda-tps2016\\tp2\\src\\main\\resources\\tp2\\mochila\\hardinstances_pisinger\\knapPI_11_200_1000.csv";
+		//String filename = "D:\\TDA\\tda-tps2016\\tp2\\src\\main\\resources\\tp2\\mochila\\hardinstances_pisinger\\knapPI_11_500_1000.csv";
+		//String filename = "D:\\TDA\\tda-tps2016\\tp2\\src\\main\\resources\\tp2\\mochila\\hardinstances_pisinger\\knapPI_11_1000_1000.csv";
 	
-    	try {
-	    	BufferedReader br = new BufferedReader(new FileReader(filename));
-	    	while(pisingerTestInstance(br));
-	    	br.close();
-	    	
-    	} catch (FileNotFoundException e) {
-			System.out.println("No se pudo abrir el archivo " + filename);
-			e.printStackTrace();
-    	} catch (IOException e) {
-    		System.out.println("Error de lectura. Archivo " + filename);
-    		e.printStackTrace();
+		List<String> files = new ArrayList<String>();
+		files.add("D:\\TDA\\tda-tps2016\\tp2\\src\\main\\resources\\tp2\\mochila\\hardinstances_pisinger\\knapPI_11_20_1000.csv");
+		files.add("D:\\TDA\\tda-tps2016\\tp2\\src\\main\\resources\\tp2\\mochila\\hardinstances_pisinger\\knapPI_11_50_1000.csv");
+		files.add("D:\\TDA\\tda-tps2016\\tp2\\src\\main\\resources\\tp2\\mochila\\hardinstances_pisinger\\knapPI_11_100_1000.csv");
+		files.add("D:\\TDA\\tda-tps2016\\tp2\\src\\main\\resources\\tp2\\mochila\\hardinstances_pisinger\\knapPI_11_200_1000.csv");
+		files.add("D:\\TDA\\tda-tps2016\\tp2\\src\\main\\resources\\tp2\\mochila\\hardinstances_pisinger\\knapPI_11_500_1000.csv");
+		files.add("D:\\TDA\\tda-tps2016\\tp2\\src\\main\\resources\\tp2\\mochila\\hardinstances_pisinger\\knapPI_11_1000_1000.csv");
+		
+		for (String filename : files) {
+	    	try {
+	    		Path p = Paths.get(filename);
+	    		System.out.println("Archivo: " + p.getFileName().toString());
+		    	BufferedReader br = new BufferedReader(new FileReader(filename));
+		    	for (int i=0 ; i<5 ; i++) pisingerTestInstance(br);
+		    	//while(pisingerTestInstance(br));
+		    	br.close();
+		    	System.out.println();
+		    	
+	    	} catch (FileNotFoundException e) {
+				System.out.println("No se pudo abrir el archivo " + filename);
+				e.printStackTrace();
+	    	} catch (IOException e) {
+	    		System.out.println("Error de lectura. Archivo " + filename);
+	    		e.printStackTrace();
+			}
 		}
 	}
 	
@@ -116,10 +136,10 @@ public class MochilaTest {
 	    	// Medicion de tiempo
 	    	long startTime = System.nanoTime();
 	    	MochilaResult result = mochila.resolver();
-	    	double timeDuration = (System.nanoTime() - startTime)/1e9;
+	    	double timeDuration = round( (System.nanoTime() - startTime)/1e9, 2);
 	    	
 	    	assertEquals(z, result.getValorOptimo());
-	    	System.out.println("Tiempo: " + timeDuration + " Tiempo esperado: " + time + " Diferencia: " + (timeDuration - time));
+	    	System.out.println("Tiempo: " + timeDuration + " Tiempo esperado: " + time + " Diferencia: " + round((timeDuration - time),2));
 	    	
 	    	// Avanzo el buffer de lectura
 	    	br.readLine();
@@ -135,5 +155,9 @@ public class MochilaTest {
     	
     	return not_eof;
     }
-
+	
+	public static double round(double value, int places) {
+	    if (places < 0) throw new IllegalArgumentException();
+	    return new BigDecimal(value).setScale(places, RoundingMode.HALF_UP).doubleValue();
+	}
 }
