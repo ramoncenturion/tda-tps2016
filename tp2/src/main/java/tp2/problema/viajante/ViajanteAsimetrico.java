@@ -35,7 +35,7 @@ public class ViajanteAsimetrico {
 			}
 		}
 		
-		this.minDistancia = heldKarp(this.inicio, mask, S);
+		this.minDistancia = bellmanHeldKarp(this.inicio, mask, S);
 		generarCamino(mask, S);
 	}
 	
@@ -47,7 +47,7 @@ public class ViajanteAsimetrico {
 		return caminoMinimo;
 	}
 	
-	private Integer heldKarp(Integer nodo, long mask, Set<Integer> S) {
+	private Integer bellmanHeldKarp(Integer nodo, long mask, Set<Integer> S) {
 		if (S.size() == 0) {			
 			return distancias[inicio][nodo];			
 		} else {
@@ -60,7 +60,7 @@ public class ViajanteAsimetrico {
 				
 				Integer distance_u;
 				if ((distance_u = distanciaMinimaPD.get(u).get(mask_u)) == null ) {
-					distance_u = heldKarp(u,mask_u,S_u);
+					distance_u = bellmanHeldKarp(u,mask_u,S_u);
 					distanciaMinimaPD.get(u).put(mask_u, distance_u);
 				}
 				min = Math.min(min, distancias[u][nodo] + distance_u);
@@ -70,7 +70,7 @@ public class ViajanteAsimetrico {
 		}
 	}
 
-	private void generarCamino(long mask, Set<Integer> S) { // O(V*(V-1) /2) = O(V^2)
+	private void generarCamino(long mask, Set<Integer> S) { 
 		caminoMinimo.add(inicio +1);
 		Integer nodo = inicio;
 		while ( !S.isEmpty() ) {
@@ -97,7 +97,7 @@ public class ViajanteAsimetrico {
 		caminoMinimo.add(inicio+1);
 	}
 	
-	public Integer recalcularDistanciaMinima() { // O(V)
+	public Integer recalcularDistanciaMinima() { 
 		Integer distance = 0;
 		for (int i = 1; i < caminoMinimo.size() ; i++) {
 			distance += distancias[caminoMinimo.get(i)-1][caminoMinimo.get(i-1)-1];
