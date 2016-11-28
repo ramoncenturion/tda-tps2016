@@ -1,4 +1,4 @@
-package main.java.tp3.aproximacion.viajante;
+package tp3.aproximacion.viajante;
 
 public class Viajante {
 
