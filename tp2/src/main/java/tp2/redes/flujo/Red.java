@@ -70,8 +70,8 @@ public class Red {
 		return null;
 	}
 	
-	public void add_edge(int u, int v, int weight) {
-		Arista arista = new Arista(u, v, weight);
+	public void add_edge(int u, int v, int capacidad) {
+		Arista arista = new Arista(u, v, capacidad);
 		
 		this.adj.get(u).add(v);
 		this.aristas.add(arista);
@@ -86,5 +86,4 @@ public class Red {
 	public List<Arista> adj_sumidero() {
 		return this.adj_e(this.n-1);
 	}
-	
 }

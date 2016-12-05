@@ -1,4 +1,4 @@
-package tp3;
+package tp3.aproximacion.viajante;
 
 import static org.junit.Assert.*;
 

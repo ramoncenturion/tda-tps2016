@@ -5,8 +5,6 @@ import java.util.Map;
 import java.util.PriorityQueue;
 import java.util.Queue;
 
-import caminos.Arista;
-
 public class Prim {
 	
 	public Prim (Graph grafo, int raiz) {

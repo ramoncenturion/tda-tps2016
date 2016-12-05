@@ -49,9 +49,9 @@ public class AlgoritmoFordFulkerson {
         }
     }
 
-	boolean bfs(Red FlujoRed, int s, int t, int paths[]) {
+	boolean bfs(Red redFlujo, int s, int t, int paths[]) {
 		// Creo un array para almacenar los las aristas que llegan al vertice destino (index del array)
-		Arista visited[] = new Arista[FlujoRed.n()];
+		Arista visited[] = new Arista[redFlujo.n()];
 	
 		// Creo la cola, encolo el vertice fuente
 		LinkedList<Integer> queue = new LinkedList<Integer>();
@@ -61,7 +61,7 @@ public class AlgoritmoFordFulkerson {
 		while (queue.size() != 0) {
 			int u = queue.poll();
 
-			for (Arista arista : FlujoRed.adj_e(u)){
+			for (Arista arista : redFlujo.adj_e(u)){
 				int v = arista.getDst();
 				if (visited[v] == null && arista.getCapacidad() > arista.getFlujo()){
 					queue.add(v);

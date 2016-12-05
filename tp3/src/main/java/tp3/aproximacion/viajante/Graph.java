@@ -3,8 +3,6 @@ package tp3.aproximacion.viajante;
 import java.util.ArrayList;
 import java.util.List;
 
-import caminos.Arista;
-
 public class Graph {
 	
 	private List<Arista> aristas;
