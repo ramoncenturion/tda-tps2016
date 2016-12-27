@@ -2,6 +2,8 @@ package tp3.aproximacion.viajante;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
+import java.util.HashSet;
 
 public class Graph {
 	
@@ -38,6 +40,15 @@ public class Graph {
 	
 	public List<Arista> getAristas() {
 		return this.aristas;
+	}
+
+	public Set<Integer> getVertices() {
+		Set<Integer> vertices = new HashSet<Integer>();
+		for (Arista arista : this.aristas) {
+			vertices.add(arista.getSrc());
+			vertices.add(arista.getDst());
+		}
+		return vertices;
 	}
 	
 	public void addArista(int u, int v, double weight) {

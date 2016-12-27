@@ -1,6 +1,6 @@
 package tp3.aproximacion.viajante;
 
-public class Arista {
+public class Arista implements Comparable<Arista> {
 	
 	int sumidero;
 	int destino;
@@ -24,4 +24,21 @@ public class Arista {
 		return peso;
 	}
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public int compareTo(Arista e) {
+        if (this.peso < e.peso)
+            return -1;
+        if (this.peso > e.peso)
+            return 1;
+
+
+        return 0;
+    }
+    
+    public String toString() {
+        return "[ARISTA] ("+sumidero+","+destino+") - "+peso;
+    }
 }
